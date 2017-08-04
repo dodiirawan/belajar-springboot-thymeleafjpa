@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="app :: head">
+		
+	</head>
+	
+<body>
+	<nav th:replace="app :: navigation"></nav>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<a th:href="@{/jurusan/tambah}" class="btn btn-primary">Tambah</a>
+				<hr/>
+			</div>
+		</div>
+		<div class="row">			
+			<div class="col-md-12">
+				<table class="table table-bordered table-hover table-striped">
+					<thead>
+						<th>No</th>
+						<th>Jurusan</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</thead>
+					<tbody>
+						<tr th:each="jrs,xno: ${jurusan}">
+							<td th:text="${xno.count}"></td>
+							<td th:text="${jrs.jurusan}"></td>
+							<td>
+								<a th:href="@{'/jurusan/ubah/' + ${jrs.id}}">Edit</a>
+							</td>
+							<td>
+								<a th:href="@{'/jurusan/hapus/' + ${jrs.id}}">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div th:replace="app :: footer"></div>
+</body>
+</html>

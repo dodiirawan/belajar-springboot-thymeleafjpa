@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="app :: head">
+		
+	</head>
+	
+<body>
+	<nav th:replace="app :: navigation"></nav>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<a th:href="@{/siswa}" class="btn btn-primary">Kembali</a>
+				<hr/>
+			</div>
+		</div>
+		<div class="row">			
+			<div class="col-md-6">
+				<form method="post" th:action="@{/siswa/save}" th:object="${siswa}">
+					<input type="hidden" th:field="*{id}"/>
+					<div class="form-group">
+						<label>NIM</label>
+						<input type="text" th:field="*{nim}" class="form-control"/>
+					</div>
+					
+					<div class="form-group">
+						<label>Nama</label>
+						<input type="text" th:field="*{nama}" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label>Jurusan</label>
+						<select th:field="*{jurusanRelasi}" class="form-control">
+							<option value=""> --Pilih-- </option>
+							<option 
+								th:each="jur : ${jurusan}"
+								th:text="${jur.jurusan}"
+								th:value="${jur.id}"
+							/>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label>Jenis Kelamin</label>
+						<div class="radio">
+							<label class="radio-inline" th:each="kel : ${kelamin}">
+							  <input type="radio" th:field="*{kelamin}" th:value="${kel}" th:text="${kel}"/>
+							</label>
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div th:replace="app :: footer"></div>
+</body>
+</html>
+
